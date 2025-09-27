@@ -5,3 +5,14 @@
 //Docker build akan membuat nama image secara otomatis dan random, namun bisa menambahkan nama/tag image nya dengan opsi -t
 docker build -t <nama-image>/app:<tag-image> <folder-dockerfile> //buat image dengan docker file
 docker build -t <nama-image>/app:<tag-image> -t <nama-image>/app:<tag-image> <folder-dockerfile> //buat beberapa image sekaligus
+
+//Docker File Format
+//Docker file biasanya dibuat dalam sebuah file dengan nama Dockerfile, tidak memiliki extension apapun
+//Walau sebenarnya bisa membuat dengan nama lain, namun direkomendasikan menggunakan nama Dockerfile
+//Dalam docker file terdapat instruction format yaitu :
+#Komentar
+INSTRUCTION arguments
+//1. # -> untuk menambah komentar, tidak akan dieksekusi
+//2. INSTRUCTION -> perintah yang digunakan Dockerfile, banyak perintah yang tersedia & penulisannya case insensitive
+//sehingga sebenarnya bebas dengan hurus besar/kecil, namun direkomendasikan dengan UPPERCASE
+//3. Arguments -> data argument/parameter untuk INSTRUCTION, yang menyesuaikan dengan jenis INSTRUCTION yang digunakan
