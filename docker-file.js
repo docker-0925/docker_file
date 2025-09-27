@@ -67,3 +67,15 @@ LABEL <key>=<value>
 LABEL <key1>=<value1> <key2>=<value2> ... //bisa beberapa key value
 docker build -t mhdhasan18/alpine-test-label label //eksekusi create image
 docker image inspect mhdhasan18/alpine-test-label //inspect untuk check informasi label di image yang baru dibuat
+
+//Add Instruction
+//ADD -> instruksi untuk menambahkan file dari source (host file/url) ke dalam folder destination di docker image
+//ADD bisa mendeteksi apakah sebuah file source merupakan file kompres (targz, zip, dll). Jika iya maka akan otomatis di ekstrak di destination folder
+//ADD juga bisa mendukung banyak penambahan file sekaligus, instruksi ADD memiliki format :
+ADD <source> <destination>
+ADD world.txt hello //Tambah file world.txt ke folder hello
+ADD *.txt hello //Tambah semua file .txt ke folder hello
+docker build -t mhdhasan18/alpine-test-add add //create image
+docker container create --name add mhdhasan18/alpine-test-add //create container dari image tadi
+docker container start add //jalankan container, akan langsung mati karena hanya menjalankan 1 CMD
+docker container logs add //melihat log, akan tertera container menjalankan CMD tadi yang dibuat (Hello World)
