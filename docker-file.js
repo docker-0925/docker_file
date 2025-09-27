@@ -43,3 +43,18 @@ RUN ["<executable file>","<argument>","<...>"] //menggunakan array, lebih ribet 
 //note : default build docker menggunakan cache, jadi ketika eksekusi build dengan instruksi yang sama dia tidak akan running ulang tapi menggunakan cache
 //jika ingin build docker tanpa cache, gunakan perintah --no-cache
 docker build -t mhdhasan18/alpine-test-run run --progress=plain --no-cache
+
+//Command Instruction
+//CMD atau Command adalah instruksi yang digunakan ketika Docker Container berjalan
+//CMD dijalankan ketika docker container berjalan, bukan ketika proses build seperti RUN
+//Di docker tidak bisa menambah lebih dari satu instruksi CMD, jika lebih dari satu hanya CMD terakhir yang dieksekusi
+//Perintah CMD memiliki beberapa format :
+CMD <command> <param> <param> //lebih mudah banyak dipakai
+CMD ["<executable file>","<argument>","<argument>"]
+CMD ["<param>","<param"] //akan menggunakan executable ENTRY POINT (next materi)
+docker build -t mhdhasan18/alpine-test-comand comand //eksekusi create image
+docker image inspect mhdhasan18/alpine-test-comand //inspect untuk check cmd di image yang baru dibuat
+//Coba check ketika create dan jalankan container
+docker container create --name command mhdhasan18/alpine-test-comand //create container dari image tadi
+docker container start command //jalankan container, akan langsung mati karena hanya menjalankan 1 CMD
+docker container logs command //melihat log, akan tertera container menjalankan CMD tadi yang dibuat (Hello World)
