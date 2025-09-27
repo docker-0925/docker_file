@@ -16,3 +16,12 @@ INSTRUCTION arguments
 //2. INSTRUCTION -> perintah yang digunakan Dockerfile, banyak perintah yang tersedia & penulisannya case insensitive
 //sehingga sebenarnya bebas dengan hurus besar/kecil, namun direkomendasikan dengan UPPERCASE
 //3. Arguments -> data argument/parameter untuk INSTRUCTION, yang menyesuaikan dengan jenis INSTRUCTION yang digunakan
+
+//Form Instruction
+//Saat membuat docker image, perintah/stage pertama adalah build stage dengan instruksi FROM
+//FROM digunakan untuk membuat build stage dari image yang sudah ditentukan
+//Biasanya jarang ada pembuatan image dari kosongan (scratch), seringnya membuat docker image dari image lain yang sudah ada
+FROM image:version //penggunaan instruksi FROM, letakkan di Dockerfile
+FROM alpine:3 //contoh penggunaan
+docker build -t mhdhasan18/alpine-test from //kemudian jalankan docker file dengan docker build untuk membuat docker image
+docker image ls //cek apakah image nya berhasil dibuat di daftar docker image
