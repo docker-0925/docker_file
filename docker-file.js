@@ -79,3 +79,15 @@ docker build -t mhdhasan18/alpine-test-add add //create image
 docker container create --name add mhdhasan18/alpine-test-add //create container dari image tadi
 docker container start add //jalankan container, akan langsung mati karena hanya menjalankan 1 CMD
 docker container logs add //melihat log, akan tertera container menjalankan CMD tadi yang dibuat (Hello World)
+
+//Copy Instruction
+//COPY -> untuk menambahkan file dari source ke dalam folder destination di docker image
+//COPY hanya melakukan copy, Jika ADD selaian melakukan copy, bisa mendownload source dari URL dan otomatis ekstrak file kompres
+//Namun disarankan hanya gunakan COPY saja, jika butuh ekstrak kompres maka gunakan RUN dan jalankan app untuk ektract file kompres tsb
+COPY <source> <destination>
+COPY world.txt hello //Tambah file world.txt ke folder hello
+COPY *.txt hello //Tambah semua file .txt ke folder hello
+docker build -t mhdhasan18/alpine-test-copy copy //create image
+docker container create --name copy mhdhasan18/alpine-test-copy //create container dari image tadi
+docker container start copy //jalankan container
+docker container logs copy //melihat log, akan tertera
