@@ -25,3 +25,21 @@ FROM image:version //penggunaan instruksi FROM, letakkan di Dockerfile
 FROM alpine:3 //contoh penggunaan
 docker build -t mhdhasan18/alpine-test from //kemudian jalankan docker file dengan docker build untuk membuat docker image
 docker image ls //cek apakah image nya berhasil dibuat di daftar docker image
+
+//Run Instruction
+//RUN -> instruksi untuk mengeksekusi perintah di dalam image pada saat build stage
+//Hasil perintah RUN akan dicommit dalam perubahan image tersebut, jadi RUN akan dieksekusi saat proses docker build saja
+//Ketika sudah menjadi docker image/menjalankan docker container dari image tersebut, perintah RUN tidak akan dijalankan lagi
+//Contoh penggunaan : ketika ingin membuat image dari app Linux dan membutuhkan db, maka ketika pembuatan image linux akan eksekusi perintah install db tersebut
+//Sehingga ketika image linux tadi dijalankan di container, sudah terdapat db yang diisntall dengan RUN tadi
+//Instruksi RUN memiliki 2 format :
+RUN <command> //lebih sering digunakan :
+RUN mkdir hello
+RUN echo "Hello World" > "hello/world.txt"
+RUN cat "hello/world.txt"
+------------------------------------------
+RUN ["<executable file>","<argument>","<...>"] //menggunakan array, lebih ribet jarang digunakan
+//note : untuk menampilkan detail ketika build, bisa gunakan perintah --progress=plain
+//note : default build docker menggunakan cache, jadi ketika eksekusi build dengan instruksi yang sama dia tidak akan running ulang tapi menggunakan cache
+//jika ingin build docker tanpa cache, gunakan perintah --no-cache
+docker build -t mhdhasan18/alpine-test-run run --progress=plain --no-cache
