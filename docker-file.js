@@ -58,3 +58,12 @@ docker image inspect mhdhasan18/alpine-test-comand //inspect untuk check cmd di 
 docker container create --name command mhdhasan18/alpine-test-comand //create container dari image tadi
 docker container start command //jalankan container, akan langsung mati karena hanya menjalankan 1 CMD
 docker container logs command //melihat log, akan tertera container menjalankan CMD tadi yang dibuat (Hello World)
+
+//Label Instruction
+//LABEL -> instruksi untuk menambahkan metadata ke dalam docker image yang dibuat
+//Metadata adalah informasi tambahan seperti nama aplikasi, pembuat, website, perusahaan, lisensi, dll
+//Metadata hanya sebagai informasi saja, tidak akan digunakan ketika menjalankan docker container
+LABEL <key>=<value>
+LABEL <key1>=<value1> <key2>=<value2> ... //bisa beberapa key value
+docker build -t mhdhasan18/alpine-test-label label //eksekusi create image
+docker image inspect mhdhasan18/alpine-test-label //inspect untuk check informasi label di image yang baru dibuat
