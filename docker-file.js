@@ -3,8 +3,8 @@
 //Dimana semua perintah yang ada di docker file akan dieksekusi untuk membua docker image
 //Untuk membuat docker image dari docker file, bisa menggunakan perintah docker build
 //Docker build akan membuat nama image secara otomatis dan random, namun bisa menambahkan nama/tag image nya dengan opsi -t
-docker build -t <nama-image>/app:<tag-image> <folder-dockerfile> //buat image dengan docker file
-docker build -t <nama-image>/app:<tag-image> -t <nama-image>/app:<tag-image> <folder-dockerfile> //buat beberapa image sekaligus
+docker build -t <username-dockerhub>/<nama-image>:<tag-image> <folder-dockerfile> //buat image dengan docker file, jika tag kosong akan diset latest
+docker build -t <username-dockerhub>/<nama-image>:<tag-image> -t <username-dockerhub>/<nama-image>:<tag-image> <folder-dockerfile> //buat beberapa image sekaligus
 
 //Docker File Format
 //Docker file biasanya dibuat dalam sebuah file dengan nama Dockerfile, tidak memiliki extension apapun
@@ -17,7 +17,7 @@ INSTRUCTION arguments
 //sehingga sebenarnya bebas dengan hurus besar/kecil, namun direkomendasikan dengan UPPERCASE
 //3. Arguments -> data argument/parameter untuk INSTRUCTION, yang menyesuaikan dengan jenis INSTRUCTION yang digunakan
 
-//Form Instruction
+//From Instruction
 //Saat membuat docker image, perintah/stage pertama adalah build stage dengan instruksi FROM
 //FROM digunakan untuk membuat build stage dari image yang sudah ditentukan
 //Biasanya jarang ada pembuatan image dari kosongan (scratch), seringnya membuat docker image dari image lain yang sudah ada
