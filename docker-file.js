@@ -109,3 +109,15 @@ docker build -t mhdhasan18/alpine-test-expose expose
 docker image inspect mhdhasan18/alpine-test-expose //akan tertera bagian ExposedPorts
 docker container create --name expose -p 8080:8080 mhdhasan18/alpine-test-expose //buat container dengan expose port yang sudah diset tadi
 docker container start expose //Kemudian memastikan bisa diakses dari host port nya
+
+//Environment Variable Instruction
+//ENV -> instruksi untuk mengubah environment variable, baik ketika tahapan build/ketika jalan dalam docker container
+//ENV yg sudah didefinisikan dalam Dockerfile bisa digunakan kembali dengan menggunakan sintaks ${NAMA_ENV}
+//Environment variable yg dibuat menggunakan instruksi ENV disimpan dalam docker image & bisa dilihat menggunakan perintah docker image inspect
+//Environment variable juga bisa diganti nilainya ketika pembuatan docker container dengan perintah docker container create ==env <key>=<value>
+//Format instruksi ENV :
+ENV <key>=<value>
+ENV <key1>=<value1> <key2>=<value2>
+docker build -t mhdhasan18/alpine-test-env env
+docker image inspect mhdhasan18/alpine-test-env //sudah bisa dicek terdapat dibagian Env dengan default port (8080)
+docker container create --name env --env APP_PORT=9090 -p 9090:9090 mhdhasan18/alpine-test-env //create container dengan mengganti default port env
