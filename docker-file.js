@@ -97,3 +97,15 @@ docker container logs copy //melihat log, akan tertera
 //Sama seperti .gitignore, bisa menyertakan file apa saja yang ingin dihiraukan tidak di ADD/COPY di .dockerignore
 //File .gitignore juga mendukung ignore folder/menggunakan regular expression
 docker build -t mhdhasan18/alpine-test-ignore ignore
+
+//Expose Instruction
+//EXPOSE -> instruksi untuk memberitahu bahwa container akan listen port pada nomor & protocol tertentu
+//EXPOSE tidak akan mempublish port, hanya untuk dokumentasi memberitahu yang membuat container bahwa image tsb akan main di port tertentu ketika dijalankan
+//Format instruksi EXPOSE :
+EXPOSE <port> //default menggunakan TCP
+EXPOSE <port>/tcp
+EXPOSE <port>/udp
+docker build -t mhdhasan18/alpine-test-expose expose
+docker image inspect mhdhasan18/alpine-test-expose //akan tertera bagian ExposedPorts
+docker container create --name expose -p 8080:8080 mhdhasan18/alpine-test-expose //buat container dengan expose port yang sudah diset tadi
+docker container start expose //Kemudian memastikan bisa diakses dari host port nya
