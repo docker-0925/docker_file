@@ -121,3 +121,11 @@ ENV <key1>=<value1> <key2>=<value2>
 docker build -t mhdhasan18/alpine-test-env env
 docker image inspect mhdhasan18/alpine-test-env //sudah bisa dicek terdapat dibagian Env dengan default port (8080)
 docker container create --name env --env APP_PORT=9090 -p 9090:9090 mhdhasan18/alpine-test-env //create container dengan mengganti default port env
+
+//Volume Instruction
+//VOLUME -> untuk membuat volume secara otomatis ketika kita membuat docker container
+//Semua file di volume otomatis akan dicopy ke docker volume, walaupun tidak membuat docker containernya, sehingga data lebih aman
+//Format instruksi VOLUME :
+VOLUME </lokasi/folder>
+VOLUME </lokasi/folder1> </lokasi/folder2> ..
+VOLUME ["</lokasi/folder1>" "</lokasi/folder2>" ".."]
