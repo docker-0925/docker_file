@@ -91,3 +91,9 @@ docker build -t mhdhasan18/alpine-test-copy copy //create image
 docker container create --name copy mhdhasan18/alpine-test-copy //create container dari image tadi
 docker container start copy //jalankan container
 docker container logs copy //melihat log, akan tertera
+
+//Dockerignore File
+//Saat melakukan ADD/COPY instruksi dari file source, docker akan membaca dulu file yang bernama .dockerignore
+//Sama seperti .gitignore, bisa menyertakan file apa saja yang ingin dihiraukan tidak di ADD/COPY di .dockerignore
+//File .gitignore juga mendukung ignore folder/menggunakan regular expression
+docker build -t mhdhasan18/alpine-test-ignore ignore
