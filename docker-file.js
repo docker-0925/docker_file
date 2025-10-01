@@ -129,3 +129,17 @@ docker container create --name env --env APP_PORT=9090 -p 9090:9090 mhdhasan18/a
 VOLUME </lokasi/folder>
 VOLUME </lokasi/folder1> </lokasi/folder2> ..
 VOLUME ["</lokasi/folder1>" "</lokasi/folder2>" ".."]
+
+//Working Directory Instruction
+//WORKDIR -> untuk menentukan direktori/folder untuk menjalankan instruksi RUN,CMD,ENTRYPOINT,COPY & ADD
+//Jika WORKDIR tidak ada otomatis direktorinya akan dibuat, dan setelah ditentukan maka akan dijaditkan tempat menjalankan instruksi selanjutnya
+//Jika WORKDIR adalah relative path, maka otomatis akan masuk ke directory dari WORKDIR sebelumnya
+//WORKDIR juga bisa digunakan sebagai path untuk lokasi pertama kali masuk ke dalam docker container
+//Format instruksi WORKDIR adalah :
+WORKDIR /app //working directorynya adalah /app (absolute path)
+WORKDIR docker //working directorynya adalah /app/docker (relative path)
+WORKDIR /home/app //sekarang working directorynya adalah /home/app
+docker build -t mhdhasan18/alpine-test-workdir workdir
+docker container create --name workdir -p 8080:8080 mhdhasan18/alpine-test-workdir
+docker container start workdir
+docker container exec -i -t workdir /bin/sh //cek dengan pwd untuk melihat detail folde di dalamnya
