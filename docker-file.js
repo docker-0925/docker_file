@@ -166,3 +166,20 @@ docker build -t mhdhasan18/alpine-test-arg arg --build-arg app=hasan //build den
 docker container create --name arg -p 8080:8080 mhdhasan18/alpine-test-arg
 docker container start arg //tidak bisa dijalankan, karena ARG hanya bisa dijalankan ketika build bukan dalam container
 //Jika ingin menggunakan ARG pada CMD container, maka bisa memasukkan data ARG ke ENV
+
+//Health Check Instruction
+//HEALTHCHECK -> untuk memberi tahu docker bagaimana untuk mengecek apakah container berjalan dengan baik/tidak
+//Jika terdapat HEALTHCHECK, otomatis container akan memiliki status health yg dari awal bernilai starting, jika sukses : healthy, dan jika gagal : unhealthy
+//Format instruksi HEALTHCHECK :
+HEALTHCHECK NONE //default, disabled health check
+HEALTHCHECK <OPTIONS> CMD <command>
+//List options :
+--interval=DURATION (default:30s)
+--timeout=DURATION (default:30s)
+--start-period=DURATION (default:0s)
+--retries=N (default:3)
+docker build -t mhdhasan18/alpine-test-health health
+docker container create --name health -p 8080:8080 mhdhasan18/alpine-test-health
+docker container start health
+docker container ls //melihat container masih sehat atau tidak berdasarkan HEALTHCHECK yang sudah dibuat
+docker container inspect health //atau bisa check di inspect akan tertera section Health
