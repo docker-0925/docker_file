@@ -154,3 +154,15 @@ docker build -t mhdhasan18/alpine-test-user user
 docker container create --name user -p 8080:8080 mhdhasan18/alpine-test-user
 docker container start user
 docker container exec -i -t user /bin/sh //cek dengan whoami untuk melihat user yang digunakan
+
+//Argument Instruction
+//ARG -> untuk mendefinisikan variable yang bisa digunakan untuk dikirim ketika build dengan perintah --build arg <key>=<value>
+//ARG -> hanya digunakan saat proses build, ketika di dalam container tidak bisa digunakan. Beda dengan ENV yg bisa jalan dalam container
+//Cara mengakses variable sama seperti mengakses ENV menggunakan ${variable_name}
+//Format instruksi ARG :
+ARG <key> //membuat argument variable
+ARG <key>=<default-value> //membuat argument variable dengan default value jika tidak diisi
+docker build -t mhdhasan18/alpine-test-arg arg --build-arg app=hasan //build dengan instruksi ARG, ganti value arg app dari default (main)
+docker container create --name arg -p 8080:8080 mhdhasan18/alpine-test-arg
+docker container start arg //tidak bisa dijalankan, karena ARG hanya bisa dijalankan ketika build bukan dalam container
+//Jika ingin menggunakan ARG pada CMD container, maka bisa memasukkan data ARG ke ENV
