@@ -143,3 +143,14 @@ docker build -t mhdhasan18/alpine-test-workdir workdir
 docker container create --name workdir -p 8080:8080 mhdhasan18/alpine-test-workdir
 docker container start workdir
 docker container exec -i -t workdir /bin/sh //cek dengan pwd untuk melihat detail folde di dalamnya
+
+//User Instruction
+//USER -> untuk mengubah user/user group ketika docker image dijalankan
+//Secara default user akan menggunakan user root, bisa mengubah user yang digunakan dengan instruksi USER
+//Format instruksi USER :
+USER <user> //Mengubah user
+USER <user>:<group> //Mengubah user & group
+docker build -t mhdhasan18/alpine-test-user user
+docker container create --name user -p 8080:8080 mhdhasan18/alpine-test-user
+docker container start user
+docker container exec -i -t user /bin/sh //cek dengan whoami untuk melihat user yang digunakan
