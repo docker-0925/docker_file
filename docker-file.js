@@ -216,3 +216,11 @@ docker container start multistagebuild
 docker login -u <username-dockerhub> //Masukkan password dengan access token yang sudah dibuat
 docker push mhdhasan18/alpine-test-multistagebuild //push image ke docker registry setelah berhasil login
 //Setelah di push, kita bisa menginstall lagi image tersebut di kemudian hari dengan pull
+
+//Digital Ocean Container Registry
+//Digital Ocean adalah salah satu cloud provider yang populer, dan memiliki fitur Docker Registry bernama Container Registry
+//Terdapat Free Version untuk ukuran sampai 500MB yang bisa digunakan
+//https://www.digitalocean.com/products/container-registry //Bisa buat Container Registry terlebih dahulu
+Berbeda dengan Docker Hub yang kita diperlukan melakukan login ketika ingin melakukan push ke Registry
+Di Digital Ocean, kita akan menggunakan Docker Config untuk mengirim Image ke Digital Ocean Container Registry
+Ini lebih mudah karena kita bisa dengan gampang push Image dari manapun selama menggunakan config file yang sama
