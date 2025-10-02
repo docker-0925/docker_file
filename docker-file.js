@@ -194,3 +194,17 @@ docker build -t mhdhasan18/alpine-test-entrypoint entrypoint
 docker image inspect mhdhasan18/alpine-test-entrypoint //akan tertera bagian entrypoint detail nya
 docker container create --name entrypoint -p 8080:8080 mhdhasan18/alpine-test-entrypoint
 docker container start entrypoint
+
+//Multi Stage Build
+//Saat membuat Dockerfile dari base image yang besar, otomatis ukuran imagenya pun akan menjadi besar juga
+//Disarankan menggunakan base image yang memang dibutuhkan saja dan memang dibutuhkan agar ukurang tidak besar
+//Jika menggunakan bahasa golang untuk kebutuhan web sederhana pada image menghasilkan ukuran image yang besar
+//Solusinya kode golang dikompilasi dulu di host, lalu file binary nya yang disimpan di image agar tidak butuh image golang lagi
+//Namun kompilasi ini hanya bisa dilakukan di platform host yang sama, misal kita ingin gunakan image alpine maka kompil harus di linux
+//Untungnya docker punya fitur Multi Stage Build yang bisa membuat beberapa build stage / tahapan build
+//Kita bisa menggunakan beberapa instruksi FORM yang nantinya menandai beberapa build stage yang akan dilakukan
+//Build stage terakhir akan dijadikan sebagai image, disini Docker build stage bisa melakukan proses kompilasi kode golang agar dikompil dgn OS yang sama
+docker build -t mhdhasan18/alpine-test-multistagebuild multistagebuild
+docker image ls //check ukuran image nya harusnya lebih kecil
+docker container create --name multistagebuild -p 8080:8080 mhdhasan18/alpine-test-multistagebuild
+docker container start multistagebuild
