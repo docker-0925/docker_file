@@ -208,3 +208,11 @@ docker build -t mhdhasan18/alpine-test-multistagebuild multistagebuild
 docker image ls //check ukuran image nya harusnya lebih kecil
 docker container create --name multistagebuild -p 8080:8080 mhdhasan18/alpine-test-multistagebuild
 docker container start multistagebuild
+
+//Docker Hub Registry
+//Setelah selesai membuat image dengan Dockerfile, bisa mengupload image tersebut ke Docker Registry
+//Salah satu Docker Registry yang gratis adalah Docker Hub (hub.docker.com)
+//Docker Hub Access Token -> digunakan untuk login ke Docker Hub
+docker login -u <username-dockerhub> //Masukkan password dengan access token yang sudah dibuat
+docker push mhdhasan18/alpine-test-multistagebuild //push image ke docker registry setelah berhasil login
+//Setelah di push, kita bisa menginstall lagi image tersebut di kemudian hari dengan pull
