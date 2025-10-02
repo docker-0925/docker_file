@@ -183,3 +183,14 @@ docker container create --name health -p 8080:8080 mhdhasan18/alpine-test-health
 docker container start health
 docker container ls //melihat container masih sehat atau tidak berdasarkan HEALTHCHECK yang sudah dibuat
 docker container inspect health //atau bisa check di inspect akan tertera section Health
+
+//Entrypoint Instruction
+//ENTRYPOINT -> untuk menentukan executable file yang akan dijalankan oleh container, biasanya berkaitan dengan instruksi CMD
+//Saat membuat instruksi CMD tanpa executable file, secara otomatis CMD akan menggunakan ENTRYPOINT
+//Format instruksi ENTRYPOINT :
+ENTRYPOINT ["executable","param1","param2"] //param disini akan dikirim ke ENTRYPOINT
+ENTRYPOINT executable param1 param2
+docker build -t mhdhasan18/alpine-test-entrypoint entrypoint
+docker image inspect mhdhasan18/alpine-test-entrypoint //akan tertera bagian entrypoint detail nya
+docker container create --name entrypoint -p 8080:8080 mhdhasan18/alpine-test-entrypoint
+docker container start entrypoint
